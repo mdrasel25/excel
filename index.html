@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microsoft Excel সম্পূর্ণ লার্নিং রোডম্যাপ | A2Z গাইড</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #070C16;
+      --surface:   #0D1524;
+      --card:      #111E30;
+      --card-h:    #162234;
+      --border:    #1C2D42;
+      --border-b:  #273D57;
+      --g:         #00C853;
+      --g-dim:     rgba(0,200,83,.11);
+      --g-glow:    rgba(0,200,83,.22);
+      --blue:      #448AFF;
+      --blue-dim:  rgba(68,138,255,.11);
+      --purple:    #CE93D8;
+      --pur-dim:   rgba(206,147,216,.11);
+      --orange:    #FFB74D;
+      --ora-dim:   rgba(255,183,77,.11);
+      --teal:      #4DB6AC;
+      --tea-dim:   rgba(77,182,172,.11);
+      --pink:      #F48FB1;
+      --pin-dim:   rgba(244,143,177,.11);
+      --indigo:    #7986CB;
+      --ind-dim:   rgba(121,134,203,.11);
+      --amber:     #FFD54F;
+      --amb-dim:   rgba(255,213,79,.11);
+      --rose:      #EF9A9A;
+      --ros-dim:   rgba(239,154,154,.11);
+      --t1:        #E8F0FE;
+      --t2:        #8FA3B8;
+      --t3:        #4A6075;
+      --fn:        'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+      --fm:        'Fira Code', 'Courier New', monospace;
+      --r:         12px;
+      --rs:        8px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--t1);
+      font-family:var(--fn);
+      line-height:1.75;
+      overflow-x:hidden;
+    }
+    /* Spreadsheet grid background */
+    body::before{
+      content:'';
+      position:fixed;inset:0;
+      background-image:
+        linear-gradient(rgba(28,45,66,.45) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(28,45,66,.45) 1px,transparent 1px);
+      background-size:52px 52px;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:13px 32px;
+      background:rgba(7,12,22,.88);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);
+    }
+    .nl{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;color:var(--t1);}
+    .nx{
+      width:34px;height:34px;border-radius:7px;
+      background:linear-gradient(135deg,#1B6B3A,#2ECC71);
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--fm);font-size:15px;font-weight:700;color:#fff;
+    }
+    .ns{display:flex;gap:5px;}
+    .ns a{
+      width:30px;height:30px;border-radius:50%;
+      border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      font-size:12px;font-family:var(--fm);
+      color:var(--t3);text-decoration:none;
+      transition:all .2s;
+    }
+    .ns a:hover{border-color:var(--g);color:var(--g);}
+
+    /* ── HERO ── */
+    .hero{
+      position:relative;min-height:100vh;z-index:1;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;padding:110px 24px 60px;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--g-dim);border:1px solid rgba(0,200,83,.28);
+      border-radius:100px;padding:6px 18px;
+      font-size:12px;color:var(--g);font-family:var(--fm);
+      margin-bottom:26px;letter-spacing:.03em;
+    }
+    .badge::before{content:'●';font-size:8px;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+    h1{font-size:clamp(34px,5.5vw,68px);font-weight:700;line-height:1.1;
+       margin-bottom:14px;letter-spacing:-.02em;}
+    .ew{color:var(--g);}
+    .cw{
+      background:linear-gradient(120deg,#448AFF,#A855F7);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .sub{font-size:17px;color:var(--t2);max-width:480px;margin:0 auto 36px;}
+
+    /* Signature formula bar */
+    .hfb{
+      display:inline-flex;align-items:center;
+      background:var(--card);border:1px solid var(--border-b);
+      border-radius:var(--rs);padding:11px 20px;gap:12px;
+      font-family:var(--fm);font-size:13px;
+      margin-bottom:44px;
+      box-shadow:0 0 48px var(--g-glow);
+    }
+    .hfb .cr{color:var(--t3);border-right:1px solid var(--border);padding-right:12px;font-size:11px;}
+    .hfb .eq{color:var(--g);font-weight:700;font-size:16px;}
+    .hfb .ft{color:var(--t1);}
+    .cur{display:inline-block;width:2px;height:16px;background:var(--g);
+         vertical-align:middle;animation:blink 1s step-end infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+    .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:640px;}
+    .pill{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:100px;padding:6px 15px;
+      font-size:12px;color:var(--t2);
+    }
+
+    /* ── MAIN ── */
+    .main{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 24px 80px;}
+
+    /* ── STEP SECTION ── */
+    .ss{margin-bottom:44px;}
+    .sh{display:flex;align-items:center;gap:16px;margin-bottom:22px;}
+    .sn{
+      width:50px;height:50px;border-radius:13px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--fm);font-weight:700;font-size:17px;
+    }
+    .stg h2{font-size:23px;font-weight:600;margin-bottom:3px;}
+    .stg .sen{font-size:12px;font-family:var(--fm);color:var(--t3);}
+    .sdesc{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--r);padding:15px 20px;
+      color:var(--t2);font-size:15px;margin-bottom:18px;
+    }
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px;}
+
+    .ic{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--r);padding:19px;
+      transition:transform .22s,box-shadow .22s,border-color .22s;
+    }
+    .ic:hover{transform:translateY(-3px);}
+    .in{font-size:15px;font-weight:600;color:var(--t1);margin-bottom:6px;}
+    .in .en{font-family:var(--fm);font-size:11px;color:var(--t3);margin-left:6px;}
+    .id{font-size:13px;color:var(--t2);margin-bottom:12px;line-height:1.65;}
+
+    /* ── FORMULA BAR ── */
+    .fb{background:#09121F;border:1px solid #1A2E45;border-radius:8px;overflow:hidden;}
+    .fbt{display:flex;align-items:center;padding:6px 12px;gap:9px;
+         border-bottom:1px solid #1A2E45;background:#0B1826;}
+    .fxl{font-family:var(--fm);font-size:11px;color:#607D8B;font-style:italic;}
+    .fc{padding:9px 13px;font-family:var(--fm);font-size:13px;line-height:1.55;}
+    .fe{color:var(--g);font-weight:700;}
+    .ff{color:#82AAFF;}
+    .fp{color:#89DDFF;}
+    .fs{color:#C3E88D;}
+    .fn{color:#F78C6C;}
+    .fr{color:#FFCB6B;}
+    .fo{color:#89DDFF;}
+    .fcm{color:var(--t3);font-style:italic;font-size:11px;}
+    .er{
+      display:inline-flex;align-items:center;gap:7px;
+      font-family:var(--fm);font-size:12px;color:var(--t2);
+      padding:5px 13px 8px;
+    }
+    .ea{color:var(--g);}
+    .ev{color:#C3E88D;}
+
+    /* Key shortcut */
+    .kc{
+      font-family:var(--fm);font-size:11px;
+      background:#162035;border:1px solid #253A54;border-bottom:2px solid #253A54;
+      border-radius:4px;padding:3px 8px;color:var(--g);white-space:nowrap;
+    }
+
+    /* Shortcut list */
+    .sw{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+    .sc{
+      display:flex;align-items:center;gap:8px;
+      background:#0D1928;border:1px solid var(--border);
+      border-radius:7px;padding:8px 13px;
+    }
+    .sc .kd{font-size:13px;color:var(--t2);}
+
+    /* Feature list */
+    .fl{display:flex;flex-direction:column;gap:7px;margin-top:9px;}
+    .fi{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--t2);}
+    .fi::before{content:'▸';color:var(--g);flex-shrink:0;margin-top:1px;}
+
+    /* Divider */
+    .div{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:44px 0;}
+
+    /* Tip */
+    .tip{
+      background:var(--g-dim);border:1px solid rgba(0,200,83,.2);
+      border-radius:var(--r);padding:16px 20px;
+      font-size:14px;color:#A7F3C9;margin-top:16px;
+    }
+    .tip::before{content:'💡 টিপস: ';font-weight:600;}
+
+    /* Step accent colors */
+    .s1 .sn{background:var(--g-dim);color:var(--g);}
+    .s1 .ic:hover{border-color:rgba(0,200,83,.35);box-shadow:0 8px 28px rgba(0,200,83,.08);}
+    .s2 .sn{background:var(--blue-dim);color:var(--blue);}
+    .s2 .ic:hover{border-color:rgba(68,138,255,.35);box-shadow:0 8px 28px rgba(68,138,255,.08);}
+    .s3 .sn{background:var(--pur-dim);color:var(--purple);}
+    .s3 .ic:hover{border-color:rgba(206,147,216,.35);box-shadow:0 8px 28px rgba(206,147,216,.08);}
+    .s4 .sn{background:var(--ora-dim);color:var(--orange);}
+    .s4 .ic:hover{border-color:rgba(255,183,77,.35);box-shadow:0 8px 28px rgba(255,183,77,.08);}
+    .s5 .sn{background:var(--tea-dim);color:var(--teal);}
+    .s5 .ic:hover{border-color:rgba(77,182,172,.35);box-shadow:0 8px 28px rgba(77,182,172,.08);}
+    .s6 .sn{background:var(--pin-dim);color:var(--pink);}
+    .s6 .ic:hover{border-color:rgba(244,143,177,.35);box-shadow:0 8px 28px rgba(244,143,177,.08);}
+    .s7 .sn{background:var(--ind-dim);color:var(--indigo);}
+    .s7 .ic:hover{border-color:rgba(121,134,203,.35);box-shadow:0 8px 28px rgba(121,134,203,.08);}
+    .s8 .sn{background:var(--amb-dim);color:var(--amber);}
+    .s8 .ic:hover{border-color:rgba(255,213,79,.35);box-shadow:0 8px 28px rgba(255,213,79,.08);}
+    .s9 .sn{background:var(--ros-dim);color:var(--rose);}
+    .s9 .ic:hover{border-color:rgba(239,154,154,.35);box-shadow:0 8px 28px rgba(239,154,154,.08);}
+
+    /* ── FOOTER ── */
+    footer{
+      position:relative;z-index:1;text-align:center;
+      padding:48px 24px;border-top:1px solid var(--border);
+      color:var(--t3);font-size:13px;
+    }
+    .ff2{font-family:var(--fm);color:var(--g);font-size:16px;margin-bottom:10px;}
+
+    /* Scroll reveal */
+    .ss{opacity:0;transform:translateY(22px);transition:opacity .55s,transform .55s;}
+    .ss.vis{opacity:1;transform:none;}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:620px){
+      nav{padding:12px 16px;}
+      .ns{display:none;}
+      .hero{padding:95px 16px 44px;}
+      h1{font-size:30px;}
+      .main{padding:0 14px 56px;}
+      .grid{grid-template-columns:1fr;}
+      .hfb{font-size:11px;padding:9px 14px;}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .ss{opacity:1;transform:none;transition:none;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nl">
+    <div class="nx">X</div>
+    Excel A2Z
+  </div>
+  <div class="ns">
+    <a href="#s1">১</a><a href="#s2">২</a><a href="#s3">৩</a>
+    <a href="#s4">৪</a><a href="#s5">৫</a><a href="#s6">৬</a>
+    <a href="#s7">৭</a><a href="#s8">৮</a><a href="#s9">৯</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">Step ১ → Step ৯ &nbsp;·&nbsp; সম্পূর্ণ গাইড</div>
+  <h1>Microsoft <span class="ew">Excel</span><br><span class="cw">সম্পূর্ণ</span> লার্নিং রোডম্যাপ</h1>
+  <p class="sub">বিগিনার থেকে প্রফেশনাল পর্যন্ত — প্রতিটি ধাপ বিস্তারিত উদাহরণ ও সিনট্যাক্সসহ</p>
+  <div class="hfb">
+    <span class="cr">A1</span>
+    <span class="eq">=</span>
+    <span class="ft">LEARN("Excel",&nbsp;"A2Z",&nbsp;Complete)</span>
+    <span class="cur"></span>
+  </div>
+  <div class="pills">
+    <span class="pill">✦ Excel Basics</span>
+    <span class="pill">∑ Basic Formula</span>
+    <span class="pill">⊨ Logical Formula</span>
+    <span class="pill">⟐ Conditional Formula</span>
+    <span class="pill">⊕ Lookup Formula</span>
+    <span class="pill">T Text Formula</span>
+    <span class="pill">◈ Data Management</span>
+    <span class="pill">◎ Reporting</span>
+    <span class="pill">⚙ Automation</span>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- STEP 1 -->
+  <section class="ss s1" id="s1">
+    <div class="sh">
+      <div class="sn">১</div>
+      <div class="stg"><h2>এক্সেল বেসিকস</h2><span class="sen">// Step 1 — Excel Basics</span></div>
+    </div>
+    <div class="sdesc">এক্সেলের মূল কাজ শুরু করার আগে ইন্টারফেস এবং ডেটা এন্ট্রির প্রাথমিক নিয়মগুলো জানা অত্যন্ত জরুরি।</div>
+    <div class="grid">
+
+      <div class="ic">
+        <div class="in">রো, কলাম ও সেল <span class="en">Row / Column / Cell</span></div>
+        <div class="id">লম্বালম্বি দাগগুলো কলাম (A, B, C…) এবং আড়াআড়ি দাগগুলো রো (1, 2, 3…)। এদের মিলনস্থলই হলো সেল।</div>
+        <div class="fl">
+          <div class="fi">A কলাম + ৫ নং রো = সেল <strong>A5</strong></div>
+          <div class="fi">ওয়ার্কশীটে ১,০৪৮,৫৭৬টি রো থাকে</div>
+          <div class="fi">এবং ১৬,৩৮৪টি কলাম থাকে</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">ডেটা এন্ট্রি ও ফরম্যাটিং <span class="en">Data Entry & Formatting</span></div>
+        <div class="id">সেলে যেকোনো টেক্সট বা সংখ্যা টাইপ করাই হলো ডেটা এন্ট্রি।</div>
+        <div class="fl">
+          <div class="fi"><strong>Bold</strong>, <em>Italic</em>, Underline করা যায়</div>
+          <div class="fi">Cell Color (Fill) এবং Font Color ব্যবহার</div>
+          <div class="fi">ফন্ট পরিবর্তন, সাইজ বড়/ছোট করা</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">অটোফিল ফিচার <span class="en">AutoFill</span></div>
+        <div class="id">ধারাবাহিক ডেটা স্বয়ংক্রিয়ভাবে পূরণ করার সুবিধা।</div>
+        <div class="fl">
+          <div class="fi">1, 2, 3… অনুক্রম স্বয়ংক্রিয় পূরণ</div>
+          <div class="fi">Saturday, Sunday… বা Jan, Feb…</div>
+          <div class="fi">Fill Handle (+ চিহ্ন) ধরে নিচে টানুন</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">কীবোর্ড শর্টকাট <span class="en">Keyboard Shortcuts</span></div>
+        <div class="id">দ্রুত কাজের জন্য প্রয়োজনীয় শর্টকাট।</div>
+        <div class="sw">
+          <div class="sc"><span class="kc">Ctrl+C</span><span class="kd">কপি</span></div>
+          <div class="sc"><span class="kc">Ctrl+V</span><span class="kd">পেস্ট</span></div>
+          <div class="sc"><span class="kc">Ctrl+Z</span><span class="kd">আনডু</span></div>
+          <div class="sc"><span class="kc">Ctrl+S</span><span class="kd">সেভ</span></div>
+          <div class="sc"><span class="kc">Alt+=</span><span class="kd">AutoSUM</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="div"></div>
+
+  <!-- STEP 2 -->
+  <section class="ss s2" id="s2">
+    <div class="sh">
+      <div class="sn">২</div>
+      <div class="stg"><h2>বেসিক ফর্মুলা</h2><span class="sen">// Step 2 — Basic Formulas</span></div>
+    </div>
+    <div class="sdesc">যেকোনো গাণিতিক হিসাব বা পরিসংখ্যান বের করার জন্য এই ফর্মুলাগুলো সবচেয়ে বেশি ব্যবহৃত হয়।</div>
+    <div class="grid">
+
+      <div class="ic">
+        <div class="in">SUM</div>
+        <div class="id">নির্দিষ্ট রেঞ্জের সব সংখ্যার যোগফল বের করতে ব্যবহার করা হয়।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">SUM</span><span class="fp">(</span><span class="fr">B2</span><span class="fo">:</span><span class="fr">B10</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>B2 থেকে B10 পর্যন্ত সব সংখ্যার যোগ</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">AVERAGE</div>
+        <div class="id">নির্দিষ্ট রেঞ্জের গড় মান বের করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">AVERAGE</span><span class="fp">(</span><span class="fr">C2</span><span class="fo">:</span><span class="fr">C6</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>৫টি সেলের পরীক্ষার নম্বরের গড়</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">MAX</div>
+        <div class="id">নির্দিষ্ট রেঞ্জের সর্বোচ্চ মান বের করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">MAX</span><span class="fp">(</span><span class="fr">D2</span><span class="fo">:</span><span class="fr">D50</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>সর্বোচ্চ মার্কস কত তা বের করবে</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">MIN</div>
+        <div class="id">নির্দিষ্ট রেঞ্জের সর্বনিম্ন মান বের করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">MIN</span><span class="fp">(</span><span class="fr">D2</span><span class="fo">:</span><span class="fr">D50</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>সর্বনিম্ন প্রাপ্ত নম্বর দেখাবে</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">COUNT</div>
+        <div class="id">নির্দিষ্ট রেঞ্জে কতটি সংখ্যাভর্তি সেল আছে তা গণনা করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">COUNT</span><span class="fp">(</span><span class="fr">A2</span><span class="fo">:</span><span class="fr">A20</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>কতজন শিক্ষার্থী নম্বর পেয়েছে তা গণনা</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="div"></div>
+
+  <!-- STEP 3 -->
+  <section class="ss s3" id="s3">
+    <div class="sh">
+      <div class="sn">৩</div>
+      <div class="stg"><h2>লজিক্যাল ফর্মুলা</h2><span class="sen">// Step 3 — Logical Formulas</span></div>
+    </div>
+    <div class="sdesc">শর্তভিত্তিক ফলাফল নির্ধারণ করতে লজিক্যাল ফর্মুলা ব্যবহার হয়।</div>
+    <div class="grid">
+
+      <div class="ic">
+        <div class="in">IF</div>
+        <div class="id">শর্ত সত্য হলে একটি, মিথ্যা হলে আরেকটি ফলাফল দেখায়।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">IF</span><span class="fp">(</span><span class="fr">F2</span><span class="fo">&gt;=</span><span class="fn">40</span><span class="fo">,</span> <span class="fs">"Pass"</span><span class="fo">,</span> <span class="fs">"Fail"</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>৪০+ পেলে Pass, না হলে Fail</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">AND</div>
+        <div class="id">একাধিক শর্ত সবগুলো একসাথে পূরণ হলে TRUE দেয়।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">IF</span><span class="fp">(</span><span class="ff">AND</span><span class="fp">(</span><span class="fr">B2</span><span class="fo">&gt;</span><span class="fn">80</span><span class="fo">,</span> <span class="fr">C2</span><span class="fo">&gt;</span><span class="fn">80</span><span class="fp">)</span><span class="fo">,</span> <span class="fs">"A+"</span><span class="fo">,</span> <span class="fs">"No"</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>দুটি বিষয়েই ৮০+ পেলে A+</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">OR</div>
+        <div class="id">যেকোনো একটি শর্ত সত্য হলে TRUE দেখায়।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">IF</span><span class="fp">(</span><span class="ff">OR</span><span class="fp">(</span><span class="fr">D2</span><span class="fo">=</span><span class="fs">"Dhaka"</span><span class="fo">,</span><span class="fr">D2</span><span class="fo">=</span><span class="fs">"Ctg"</span><span class="fp">)</span><span class="fo">,</span><span class="fs">"Main City"</span><span class="fo">,</span><span class="fs">"Other"</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>ঢাকা বা চট্টগ্রাম হলে "Main City"</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">IFERROR</div>
+        <div class="id">ফর্মুলায় ভুল (#DIV/0! বা #N/A) হলে বিকল্প মান দেখায়।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">IFERROR</span><span class="fp">(</span><span class="fr">A2</span><span class="fo">/</span><span class="fr">B2</span><span class="fo">,</span> <span class="fn">0</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>B2 শূন্য হলে ভুল না দেখিয়ে 0 দেখাবে</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="div"></div>
+
+  <!-- STEP 4 -->
+  <section class="ss s4" id="s4">
+    <div class="sh">
+      <div class="sn">৪</div>
+      <div class="stg"><h2>কন্ডিশনাল ফর্মুলা</h2><span class="sen">// Step 4 — Conditional Formulas</span></div>
+    </div>
+    <div class="sdesc">নির্দিষ্ট শর্ত পূরণ করে এমন সেলের গণনা বা যোগফল বের করতে এই ফর্মুলাগুলো ব্যবহার হয়।</div>
+    <div class="grid">
+
+      <div class="ic">
+        <div class="in">COUNTIF</div>
+        <div class="id">একটি নির্দিষ্ট শর্ত মিলে এমন সেলের সংখ্যা গণনা করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">COUNTIF</span><span class="fp">(</span><span class="fr">C2</span><span class="fo">:</span><span class="fr">C30</span><span class="fo">,</span> <span class="fs">"Present"</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>কতদিন "Present" আছে তা গণনা</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">SUMIF</div>
+        <div class="id">নির্দিষ্ট শর্ত পূরণকারী সেলের মানগুলোর যোগফল বের করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">SUMIF</span><span class="fp">(</span><span class="fr">A2</span><span class="fo">:</span><span class="fr">A20</span><span class="fo">,</span><span class="fs">"Laptop"</span><span class="fo">,</span><span class="fr">B2</span><span class="fo">:</span><span class="fr">B20</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>শুধু "Laptop" বিক্রির মোট যোগফল</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">COUNTIFS</div>
+        <div class="id">একাধিক শর্ত একসাথে মিলে এমন সেলের সংখ্যা গণনা করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">COUNTIFS</span><span class="fp">(</span><span class="fr">A2</span><span class="fo">:</span><span class="fr">A50</span><span class="fo">,</span><span class="fs">"Male"</span><span class="fo">,</span><span class="fr">B2</span><span class="fo">:</span><span class="fr">B50</span><span class="fo">,</span><span class="fs">"Dhaka"</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>ঢাকার পুরুষ সদস্যের সংখ্যা গণনা</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">SUMIFS</div>
+        <div class="id">একাধিক শর্ত পূরণ হলে নির্দিষ্ট রেঞ্জের যোগফল নির্ণয় করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">SUMIFS</span><span class="fp">(</span><span class="fr">D2</span><span class="fo">:</span><span class="fr">D20</span><span class="fo">,</span><span class="fr">A2</span><span class="fo">:</span><span class="fr">A20</span><span class="fo">,</span><span class="fs">"Samsung"</span><span class="fo">,</span><span class="fr">B2</span><span class="fo">:</span><span class="fr">B20</span><span class="fo">,</span><span class="fs">"Blue"</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>Samsung ব্র্যান্ডের নীল রঙের মোট বিক্রয়</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="div"></div>
+
+  <!-- STEP 5 -->
+  <section class="ss s5" id="s5">
+    <div class="sh">
+      <div class="sn">৫</div>
+      <div class="stg"><h2>লুকআপ ফর্মুলা</h2><span class="sen">// Step 5 — Lookup Formulas</span></div>
+    </div>
+    <div class="sdesc">ডেটা টেবিল থেকে নাম বা ID দিয়ে নির্দিষ্ট তথ্য খুঁজে বের করার অপরিহার্য ফর্মুলা।</div>
+    <div class="grid">
+
+      <div class="ic">
+        <div class="in">VLOOKUP</div>
+        <div class="id">টেবিলের প্রথম কলামে নির্দিষ্ট মান খুঁজে পাশের কলাম থেকে তথ্য আনে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">VLOOKUP</span><span class="fp">(</span><span class="fs">"ID-102"</span><span class="fo">,</span><span class="fr">A2</span><span class="fo">:</span><span class="fr">E50</span><span class="fo">,</span><span class="fn">3</span><span class="fo">,</span><span class="fr">FALSE</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>ID-102 এর ৩নং কলামের মান দেখাবে</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">HLOOKUP</div>
+        <div class="id">VLOOKUP-এর মতো, তবে এটি আড়াআড়ি (Row) বরাবর তথ্য খোঁজে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">HLOOKUP</span><span class="fp">(</span><span class="fs">"Target"</span><span class="fo">,</span><span class="fr">A1</span><span class="fo">:</span><span class="fr">M10</span><span class="fo">,</span><span class="fn">2</span><span class="fo">,</span><span class="fr">FALSE</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>"Target" কলামের ২নং রো দেখাবে</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">XLOOKUP <span class="en">Excel 365+</span></div>
+        <div class="id">V/HLOOKUP-এর আধুনিক বিকল্প। যেকোনো দিক থেকে সার্চ করতে পারে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">XLOOKUP</span><span class="fp">(</span><span class="fr">A2</span><span class="fo">,</span><span class="fr">E2</span><span class="fo">:</span><span class="fr">E20</span><span class="fo">,</span><span class="fr">B2</span><span class="fo">:</span><span class="fr">B20</span><span class="fo">,</span><span class="fs">"পাওয়া যায়নি"</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span>না পেলে কাস্টম বার্তা দেখাবে</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">INDEX + MATCH</div>
+        <div class="id">MATCH দিয়ে অবস্থান বের করে, INDEX দিয়ে সেই অবস্থানের মান আনে। XLOOKUP না থাকলে সেরা বিকল্প।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">INDEX</span><span class="fp">(</span><span class="fr">B2</span><span class="fo">:</span><span class="fr">B50</span><span class="fo">,</span><span class="ff">MATCH</span><span class="fp">(</span><span class="fr">A2</span><span class="fo">,</span><span class="fr">A2</span><span class="fo">:</span><span class="fr">A50</span><span class="fo">,</span><span class="fn">0</span><span class="fp">))</span></div>
+          <div class="er"><span class="ea">→</span><span>দ্বিমুখী লুকআপের সেরা পদ্ধতি</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="div"></div>
+
+  <!-- STEP 6 -->
+  <section class="ss s6" id="s6">
+    <div class="sh">
+      <div class="sn">৬</div>
+      <div class="stg"><h2>টেক্সট ফর্মুলা</h2><span class="sen">// Step 6 — Text Formulas</span></div>
+    </div>
+    <div class="sdesc">সেলের টেক্সট আলাদা করা, একত্র করা বা ফরম্যাট পরিবর্তনের জন্য এই ফর্মুলাগুলো ব্যবহার হয়।</div>
+    <div class="grid">
+
+      <div class="ic">
+        <div class="in">LEFT</div>
+        <div class="id">টেক্সটের বাম পাশ থেকে নির্দিষ্ট সংখ্যক অক্ষর বের করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">LEFT</span><span class="fp">(</span><span class="fs">"Dhaka-1200"</span><span class="fo">,</span> <span class="fn">5</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span class="ev">"Dhaka"</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">RIGHT</div>
+        <div class="id">টেক্সটের ডান পাশ থেকে নির্দিষ্ট সংখ্যক অক্ষর বের করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">RIGHT</span><span class="fp">(</span><span class="fs">"Dhaka-1200"</span><span class="fo">,</span> <span class="fn">4</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span class="ev">"1200"</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">MID</div>
+        <div class="id">টেক্সটের মাঝখান থেকে নির্দিষ্ট অবস্থান শুরু করে অক্ষর বের করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">MID</span><span class="fp">(</span><span class="fs">"ABC-999-XYZ"</span><span class="fo">,</span> <span class="fn">5</span><span class="fo">,</span> <span class="fn">3</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span class="ev">"999"</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">CONCAT</div>
+        <div class="id">একাধিক সেলের টেক্সট একত্রে জোড়া লাগিয়ে একটি সেলে পরিণত করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">CONCAT</span><span class="fp">(</span><span class="fs">"Hello"</span><span class="fo">,</span><span class="fs">" "</span><span class="fo">,</span><span class="fs">"World"</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span class="ev">"Hello World"</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">TEXT</div>
+        <div class="id">সংখ্যা বা তারিখকে নির্দিষ্ট ফরম্যাটে টেক্সটে রূপান্তর করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">fx</span></div>
+          <div class="fc"><span class="fe">=</span><span class="ff">TEXT</span><span class="fp">(</span><span class="fs">"2026-06-11"</span><span class="fo">,</span><span class="fs">"dddd"</span><span class="fp">)</span></div>
+          <div class="er"><span class="ea">→</span><span class="ev">"Thursday"</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="div"></div>
+
+  <!-- STEP 7 -->
+  <section class="ss s7" id="s7">
+    <div class="sh">
+      <div class="sn">৭</div>
+      <div class="stg"><h2>ডেটা ম্যানেজমেন্ট</h2><span class="sen">// Step 7 — Data Management</span></div>
+    </div>
+    <div class="sdesc">হাজার হাজার ডেটা সাজানো, প্রয়োজনীয় ডেটা খুঁজে বের করা এবং ভুল ডেটা রোধ করার কার্যকরী পদ্ধতি।</div>
+    <div class="grid">
+
+      <div class="ic">
+        <div class="in">Sort <span class="en">সাজানো</span></div>
+        <div class="id">ডেটা A to Z বা Z to A ক্রমে সাজানোর পদ্ধতি।</div>
+        <div class="fl">
+          <div class="fi">ছোট থেকে বড় (A to Z / 1 to 100)</div>
+          <div class="fi">বড় থেকে ছোট (Z to A / 100 to 1)</div>
+          <div class="fi">যেকোনো কলামের ভিত্তিতে সাজানো যায়</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">Filter <span class="en">ফিল্টার</span></div>
+        <div class="id">বিশাল ডেটা থেকে নির্দিষ্ট শর্তের ডেটা দেখানোর সুবিধা।</div>
+        <div class="fl">
+          <div class="fi">শুধু "Dhaka" শহরের সদস্যদের দেখানো</div>
+          <div class="fi">শর্টকাট: <span class="kc">Ctrl+Shift+L</span></div>
+          <div class="fi">একাধিক শর্তে একসাথে ফিল্টার করা যায়</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">Data Validation <span class="en">ইনপুট নিয়ন্ত্রণ</span></div>
+        <div class="id">সেলে ভুল ডেটা ঢুকতে না পারে তা নিশ্চিত করে।</div>
+        <div class="fl">
+          <div class="fi">Dropdown List তৈরি করা যায়</div>
+          <div class="fi">ব্যবহারকারী শুধু তালিকা থেকে বাছাই করতে পারবেন</div>
+          <div class="fi">Data → Data Validation</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">Remove Duplicates <span class="en">ডুপ্লিকেট মুছা</span></div>
+        <div class="id">ডেটায় বারবার আসা একই তথ্য মুছে শুধু অনন্য (Unique) ডেটা রাখা।</div>
+        <div class="fl">
+          <div class="fi">Data → Remove Duplicates</div>
+          <div class="fi">একাধিক কলাম মিলিয়ে ডুপ্লিকেট খোঁজা যায়</div>
+          <div class="fi">অনন্য রেকর্ডের সংখ্যা জানা যায়</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">Conditional Formatting <span class="en">শর্তভিত্তিক রঙ</span></div>
+        <div class="id">নির্দিষ্ট শর্ত পূরণ হলে সেলের রঙ স্বয়ংক্রিয়ভাবে পরিবর্তিত হয়।</div>
+        <div class="fl">
+          <div class="fi">লাল সেল = ব্যর্থ / সবুজ সেল = পাস</div>
+          <div class="fi">শীর্ষ ১০% সেল হাইলাইট করা যায়</div>
+          <div class="fi">Home → Conditional Formatting</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="div"></div>
+
+  <!-- STEP 8 -->
+  <section class="ss s8" id="s8">
+    <div class="sh">
+      <div class="sn">৮</div>
+      <div class="stg"><h2>রিপোর্টিং</h2><span class="sen">// Step 8 — Reporting & Pivot Tables</span></div>
+    </div>
+    <div class="sdesc">কাঁচা ডেটাকে অর্থপূর্ণ সারাংশ ও ব্যবসায়িক রিপোর্টে রূপান্তর করার ধাপ।</div>
+    <div class="grid">
+
+      <div class="ic">
+        <div class="in">Pivot Table <span class="en">পিভট টেবিল</span></div>
+        <div class="id">Excel-এর সবচেয়ে শক্তিশালী বিশ্লেষণ টুল। কোনো ফর্মুলা ছাড়াই ড্র্যাগ করে সারাংশ তৈরি।</div>
+        <div class="fl">
+          <div class="fi">মাসওয়ারি বিক্রয় সারাংশ বের করা</div>
+          <div class="fi">বিভাগ অনুযায়ী মোট খরচ গণনা</div>
+          <div class="fi">Insert → PivotTable দিয়ে শুরু</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">Pivot Chart <span class="en">পিভট চার্ট</span></div>
+        <div class="id">Pivot Table-এর ডেটা থেকে স্বয়ংক্রিয়ভাবে চার্ট তৈরি।</div>
+        <div class="fl">
+          <div class="fi">Bar, Line, Pie চার্ট তৈরি করা যায়</div>
+          <div class="fi">উপস্থাপনা ও প্রেজেন্টেশনে সহায়ক</div>
+          <div class="fi">ডেটা পরিবর্তে চার্টও আপডেট হয়</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">Dashboard Basics <span class="en">ড্যাশবোর্ড</span></div>
+        <div class="id">Pivot Table, চার্ট ও Slicer দিয়ে একটি ইন্টারেক্টিভ ড্যাশবোর্ড তৈরি।</div>
+        <div class="fl">
+          <div class="fi">Slicer দিয়ে ভিজ্যুয়াল ফিল্টার বোতাম যোগ</div>
+          <div class="fi">এক ক্লিকেই পুরো রিপোর্ট আপডেট হয়</div>
+          <div class="fi">ব্যবস্থাপক ও স্টেকহোল্ডারদের জন্য আদর্শ</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="div"></div>
+
+  <!-- STEP 9 -->
+  <section class="ss s9" id="s9">
+    <div class="sh">
+      <div class="sn">৯</div>
+      <div class="stg"><h2>অটোমেশন</h2><span class="sen">// Step 9 — Automation & AI</span></div>
+    </div>
+    <div class="sdesc">বারবার করা একঘেয়ে কাজ স্বয়ংক্রিয় করে Excel-কে আরও শক্তিশালী করার আধুনিক পদ্ধতি।</div>
+    <div class="grid">
+
+      <div class="ic">
+        <div class="in">Flash Fill <span class="en">ফ্ল্যাশ ফিল</span></div>
+        <div class="id">আপনার কাজের প্যাটার্ন বুঝে নিয়ে স্বয়ংক্রিয়ভাবে বাকি সেল পূরণ করে।</div>
+        <div class="fb"><div class="fbt"><span class="fxl">উদাহরণ</span></div>
+          <div class="fc" style="color:var(--t2);">"Rahim Uddin" <span class="fo">→</span> <span class="fs">"Rahim"</span> <span class="fcm">// প্রথম নাম আলাদা</span></div>
+          <div class="er"><span class="kc">Ctrl+E</span><span>চাপলে বাকি সব স্বয়ংক্রিয়</span></div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">Power Query <span class="en">পাওয়ার কুয়েরি</span></div>
+        <div class="id">বিভিন্ন সোর্স থেকে ডেটা আমদানি করে পরিষ্কার ও রূপান্তর করার শক্তিশালী টুল।</div>
+        <div class="fl">
+          <div class="fi">PDF, Web, Excel ফাইল থেকে ডেটা আনা</div>
+          <div class="fi">খালি রো মুছা, ফরম্যাট ঠিক করা</div>
+          <div class="fi">Data → Get Data থেকে শুরু</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">Basic Macro <span class="en">ম্যাক্রো</span></div>
+        <div class="id">প্রতিদিনের কাজ রেকর্ড করে রাখুন — পরে এক ক্লিকে সব কাজ স্বয়ংক্রিয় হবে।</div>
+        <div class="fl">
+          <div class="fi">Excel আপনার প্রতিটি কাজ রেকর্ড করে রাখে</div>
+          <div class="fi">পরবর্তীতে ঐ ম্যাক্রো চালালে স্বয়ংক্রিয় সম্পাদিত হয়</div>
+          <div class="fi">View → Macros → Record Macro</div>
+        </div>
+      </div>
+
+      <div class="ic">
+        <div class="in">AI with Excel <span class="en">কৃত্রিম বুদ্ধিমত্তা</span></div>
+        <div class="id">আধুনিক Excel-এ AI ব্যবহার করে ডেটা বিশ্লেষণ ও পরামর্শ নেওয়া।</div>
+        <div class="fl">
+          <div class="fi">Analyze Data ফিচার দিয়ে স্বয়ংক্রিয় বিশ্লেষণ</div>
+          <div class="fi">AI-এর সাথে কথা বলে ফর্মুলা জেনে নেওয়া</div>
+          <div class="fi">Home → Analyze Data (Copilot)</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip">
+      Excel মাস্টার হওয়া রাতারাতি সম্ভব নয়। প্রথমে ধাপ ১ ও ২ ভালোভাবে আয়ত্ত করুন। তারপর ধাপ ৩ ও ৪ মিলিয়ে অনুশীলন করুন। সবশেষে Pivot Table ও Dashboard-এ মনোযোগ দিন — তাহলে যেকোনো কর্পোরেট বা প্রতিষ্ঠানিক কাজের জন্য সম্পূর্ণ প্রস্তুত হবেন।
+    </div>
+  </section>
+
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="ff2">=DONE("Excel A2Z",&nbsp;"✓ সম্পূর্ণ")</div>
+  <p>Microsoft Excel সম্পূর্ণ লার্নিং রোডম্যাপ — Step ১ থেকে Step ৯</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.ss').forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
